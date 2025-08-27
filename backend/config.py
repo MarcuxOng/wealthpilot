@@ -8,13 +8,10 @@ class Settings(BaseSettings):
         extra="ignore"
     )
 
-    # Gemini API Configuration
     gemini_api_key: str
-    gemini_model: str = "gemini-2.0-flash-exp"
-    
-    # App Configuration
-    app_host: str = "0.0.0.0"
-    app_port: int = 8080
+    gemini_model: str
+    app_host: str
+    app_port: int
 
 
 settings = Settings()

@@ -1,24 +1,9 @@
-import json
-import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.gemini import gemini_client
-from backend.sysPrompt import system_prompt
-from backend.config import settings
-
-
-def load_data():
-    data_file_path = os.path.join(os.path.dirname(__file__), "data", "data.json")
-    try:
-        with open(data_file_path, 'r', encoding='utf-8') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        print(f"Error: Data file not found at {data_file_path}")
-        return {"clients": {}, "products": {}}
-    except json.JSONDecodeError as e:
-        print(f"Error: Invalid JSON in data file: {e}")
-        return {"clients": {}, "products": {}}
+from backend.data.data import load_data
+from backend.llm.gemini import gemini_client
+from backend.llm.sysPrompt import system_prompt
 
 
 def main() -> FastAPI:
@@ -28,7 +13,6 @@ def main() -> FastAPI:
         version="1.0.0"
     )
 
-    # Enable CORS
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -36,7 +20,6 @@ def main() -> FastAPI:
         allow_headers=["*"],
     )
 
-    # Load data from JSON file
     db_data = load_data()
 
     @app.get("/", tags=["Root"])
@@ -73,7 +56,6 @@ def main() -> FastAPI:
 
     @app.get("/test-simple", tags=["Testing"])
     def test_simple():
-        """Simple test endpoint to verify API is working"""
         return {
             "message": "API is working correctly",
             "status": "ok",
