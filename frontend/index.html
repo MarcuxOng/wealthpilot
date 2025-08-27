@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Management Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .client-info { background-color: #f0f8ff; }
+        .products { background-color: #fff0f5; }
+        .recommendations { background-color: #f0fff0; }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wealth Management Portal</h1>
+    
+    <div class="section">
+        <h2>Client Lookup</h2>
+        <input type="text" id="clientId" placeholder="Enter Client ID">
+        <button onclick="loadClientData()">Load Data</button>
+    </div>
+
+    <div class="section client-info">
+        <h2>Client Information</h2>
+        <div id="clientData"></div>
+    </div>
+
+    <div class="section recommendations">
+        <h2>AI Recommendations</h2>
+        <div id="recommendations"></div>
+    </div>
+
+    <div class="section products">
+        <h2>Available Products</h2>
+        <div id="productsList"></div>
+    </div>
+
+    <script>
+        async function loadClientData() {
+            const clientId = document.getElementById('clientId').value;
+            if (!clientId) return;
+
+            try {
+                // Fetch client data
+                const clientResponse = await fetch(`http://localhost:8000/client/${clientId}`);
+                const clientData = await clientResponse.json();
+                
+                // Display client info
+                document.getElementById('clientData').innerHTML = `
+                    <p><strong>Name:</strong> ${clientData.client.name}</p>
+                    <p><strong>Risk Profile:</strong> ${clientData.client.risk_profile}</p>
+                    <p><strong>Current Products:</strong> ${clientData.client.existing_products.join(', ')}</p>
+                `;
+
+                // Display recommendations
+                document.getElementById('recommendations').innerHTML = clientData.recommendations
+                    .map(rec => `
+                        <div class="recommendation">
+                            <h3>${rec.product_id} (Confidence: ${rec.confidence})</h3>
+                            <p>${rec.reason}</p>
+                        </div>
+                    `).join('');
+
+                // Load products list
+                const productsResponse = await fetch('http://localhost:8000/products');
+                const products = await productsResponse.json();
+                document.getElementById('productsList').innerHTML = Object.values(products)
+                    .map(product => `
+                        <div class="product">
+                            <h3>${product.name}</h3>
+                            <p>Risk Level: ${product.risk_level}</p>
+                        </div>
+                    `).join('');
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error loading client data');
+            }
+        }
+    </script>
+</body>
+</html>
