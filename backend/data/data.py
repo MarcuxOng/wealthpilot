@@ -12,3 +12,5 @@ def load_data():
     except json.JSONDecodeError as e:
         print(f"Error: Invalid JSON in data file: {e}")
         return {"clients": {}, "products": {}}
+
+db_data = load_data()

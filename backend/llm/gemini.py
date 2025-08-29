@@ -3,8 +3,8 @@ import time
 
 from typing import Dict, Any
 from google import generativeai as genai
-
 from google.api_core import exceptions as google_exceptions
+
 from backend.config import settings
 
 genai.configure(api_key=settings.gemini_api_key)
@@ -30,10 +30,7 @@ def gemini_client(prompt: str, max_retries: int = 3) -> Dict[str, Any]:
                 continue
             raise e
             
-        except (google_exceptions.PermissionDenied, google_exceptions.ResourceExhausted) as e:
-            raise e
-            
-        except json.JSONDecodeError as e:
+        except (google_exceptions.PermissionDenied, google_exceptions.ResourceExhausted, json.JSONDecodeError) as e:
             raise e
 
     raise Exception("Max retries exceeded")
