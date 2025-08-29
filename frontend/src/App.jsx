@@ -22,7 +22,7 @@ function App() {
         throw new Error('Invalid Client ID format')
       }
       
-      const response = await fetch(`http://localhost:8000/client/${encodeURIComponent(clientId)}`)
+      const response = await fetch(`/client/${encodeURIComponent(clientId)}`)
       
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)

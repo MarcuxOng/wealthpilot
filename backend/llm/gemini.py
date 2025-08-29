@@ -7,14 +7,20 @@ from google.api_core import exceptions as google_exceptions
 
 from backend.config import settings
 
-genai.configure(api_key=settings.gemini_api_key)
-model = genai.GenerativeModel(settings.gemini_model)
+_model = None
+
+def _get_model():
+    global _model
+    if _model is None:
+        genai.configure(api_key=settings.gemini_api_key)
+        _model = genai.GenerativeModel(settings.gemini_model)
+    return _model
 
 
 def gemini_client(prompt: str, max_retries: int = 3) -> Dict[str, Any]:
     for attempt in range(max_retries):
         try:
-            chat = model.start_chat(history=[])
+            chat = _get_model().start_chat(history=[])
             response = chat.send_message(prompt).text.strip()
             
             if '```' in response:
