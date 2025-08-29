@@ -3,7 +3,7 @@ from typing import Dict
 def system_prompt(client_data: Dict, available_products: Dict) -> str:
     products_list = "\n".join([
         f"- {prod['id']}: {prod['name']} ({prod['risk_level']} risk) - {prod['description']}"
-        for prod in available_products.values()
+        for prod in available_products["products"]
     ])
 
 

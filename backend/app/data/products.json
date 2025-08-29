@@ -1,0 +1,94 @@
+{
+    "products": [
+        {
+            "id": "1",
+            "name": "Everyday Global Account",
+            "risk_level": "low",
+            "description": "Multi-currency account with fee-free transfers and withdrawals in 11 currencies"
+        },
+        {
+            "id": "2",
+            "name": "SGD Time Deposit",
+            "risk_level": "low",
+            "description": "Fixed deposit in SGD with competitive promotional interest rates"
+        },
+        {
+            "id": "3",
+            "name": "Foreign Currency Time Deposit",
+            "risk_level": "moderate",
+            "description": "Deposit in multiple currencies with flexible tenures and higher yield potential"
+        },
+        {
+            "id": "4",
+            "name": "HSBC Live+ Credit Card",
+            "risk_level": "moderate",
+            "description": "Cashback-focused credit card offering up to 8% cashback and dining discounts"
+        },
+        {
+            "id": "5",
+            "name": "HSBC TravelOne Credit Card",
+            "risk_level": "moderate",
+            "description": "Travel rewards card offering miles, lounge access, and complimentary travel insurance"
+        },
+        {
+            "id": "6",
+            "name": "HSBC Advance Credit Card",
+            "risk_level": "low",
+            "description": "Flat 2.5% cashback on all spending with no minimum spend required"
+        },
+        {
+            "id": "7",
+            "name": "HSBC Revolution Credit Card",
+            "risk_level": "moderate",
+            "description": "Rewards card with 10X points on online and mobile payments"
+        },
+        {
+            "id": "8",
+            "name": "HSBC Personal Loan",
+            "risk_level": "moderate",
+            "description": "Unsecured personal financing with competitive rates and cashback rewards"
+        },
+        {
+            "id": "9",
+            "name": "HSBC Home Loan",
+            "risk_level": "moderate",
+            "description": "Flexible fixed and floating rate packages for property financing"
+        },
+        {
+            "id": "10",
+            "name": "HSBC Debt Consolidation Plan",
+            "risk_level": "moderate",
+            "description": "Combine multiple debts into one repayment plan with lower interest"
+        },
+        {
+            "id": "11",
+            "name": "Unit Trust Investments",
+            "risk_level": "moderate",
+            "description": "Access to over 100 mutual funds including ESG-focused portfolios"
+        },
+        {
+            "id": "12",
+            "name": "Structured Products",
+            "risk_level": "high",
+            "description": "Tailored investment products linked to equities, FX, or indices"
+        },
+        {
+            "id": "13",
+            "name": "Global Equities Trading",
+            "risk_level": "high",
+            "description": "Trade equities across major global stock exchanges via HSBC platforms"
+        },
+        {
+            "id": "14",
+            "name": "Foreign Exchange Services",
+            "risk_level": "moderate",
+            "description": "Manage multi-currency needs and FX trading via HSBC app"
+        },
+        {
+            "id": "15",
+            "name": "HSBC Life Insurance Plans",
+            "risk_level": "low",
+            "description": "Comprehensive life and health insurance solutions from HSBC Life Singapore"
+        }
+    ]
+}

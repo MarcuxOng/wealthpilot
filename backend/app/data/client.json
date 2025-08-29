@@ -1,0 +1,119 @@
+{
+      "101": {
+            "id": "101",
+            "name": "John Doe",
+            "age": 35,
+            "annual_income": 120000,
+            "risk_profile": "moderate",
+            "existing_products": [
+                  "Everyday Global Account",
+                  "HSBC Revolution Credit Card",
+                  "Unit Trust Investments"
+            ],
+            "investment_goals": [
+                  "retirement planning",
+                  "wealth growth",
+                  "children education"
+            ],
+            "time_horizon": "15-20 years",
+            "current_savings": 50000,
+            "monthly_surplus": 2500,
+            "dependents": 2,
+            "employment_status": "employed",
+            "investment_experience": "beginner to intermediate"
+      },
+      "102": {
+            "id": "102",
+            "name": "Sarah Chen",
+            "age": 45,
+            "annual_income": 180000,
+            "risk_profile": "conservative",
+            "existing_products": [
+                  "SGD Time Deposit",
+                  "Foreign Currency Time Deposit",
+                  "HSBC Life Insurance Plan"
+            ],
+            "investment_goals": [
+                  "capital preservation",
+                  "steady income",
+                  "retirement planning"
+            ],
+            "time_horizon": "10-15 years",
+            "current_savings": 200000,
+            "monthly_surplus": 4000,
+            "dependents": 1,
+            "employment_status": "employed",
+            "investment_experience": "experienced"
+      },
+      "103": {
+            "id": "103",
+            "name": "Michael Tan",
+            "age": 29,
+            "annual_income": 85000,
+            "risk_profile": "aggressive",
+            "existing_products": [
+                  "Everyday Global Account",
+                  "HSBC TravelOne Credit Card",
+                  "Global Equities Trading"
+            ],
+            "investment_goals": [
+                  "wealth growth",
+                  "early retirement",
+                  "travel lifestyle"
+            ],
+            "time_horizon": "20-25 years",
+            "current_savings": 30000,
+            "monthly_surplus": 1800,
+            "dependents": 0,
+            "employment_status": "employed",
+            "investment_experience": "intermediate"
+      },
+      "104": {
+            "id": "104",
+            "name": "Aisha Rahman",
+            "age": 52,
+            "annual_income": 220000,
+            "risk_profile": "conservative",
+            "existing_products": [
+                  "HSBC Advance Credit Card",
+                  "SGD Time Deposit",
+                  "HSBC Life Insurance Plan",
+                  "Foreign Exchange Services"
+            ],
+            "investment_goals": [
+                  "capital preservation",
+                  "legacy planning",
+                  "retirement income"
+            ],
+            "time_horizon": "5-10 years",
+            "current_savings": 500000,
+            "monthly_surplus": 6000,
+            "dependents": 3,
+            "employment_status": "self-employed",
+            "investment_experience": "experienced"
+      },
+      "105": {
+            "id": "105",
+            "name": "David Lim",
+            "age": 40,
+            "annual_income": 150000,
+            "risk_profile": "moderate to aggressive",
+            "existing_products": [
+                  "Everyday Global Account",
+                  "HSBC Live+ Credit Card",
+                  "Structured Products",
+                  "Unit Trust Investments"
+            ],
+            "investment_goals": [
+                  "wealth accumulation",
+                  "property purchase",
+                  "children education"
+            ],
+            "time_horizon": "10-15 years",
+            "current_savings": 120000,
+            "monthly_surplus": 3500,
+            "dependents": 2,
+            "employment_status": "employed",
+            "investment_experience": "advanced"
+      }
+}
