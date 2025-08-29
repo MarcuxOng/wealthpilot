@@ -8,7 +8,7 @@ if __name__ == '__main__':
     from app.main import app
 
     uvicorn.run(
-        "backend.main:app",
+        "app.main:app",
         host=settings.app_host,
         port=settings.app_port,
         reload=True,
