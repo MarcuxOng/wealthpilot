@@ -115,5 +115,74 @@
             "dependents": 2,
             "employment_status": "employed",
             "investment_experience": "advanced"
+      },
+      "106": {
+            "id": "106",
+            "name": "Patricia Wong",
+            "age": 63,
+            "annual_income": 75000,
+            "risk_profile": "conservative",
+            "existing_products": [
+                  "SGD Time Deposit",
+                  "HSBC Life Insurance Plan",
+                  "HSBC Advance Credit Card"
+            ],
+            "investment_goals": [
+                  "retirement income",
+                  "capital protection",
+                  "healthcare security"
+            ],
+            "time_horizon": "5-10 years",
+            "current_savings": 400000,
+            "monthly_surplus": 2000,
+            "dependents": 0,
+            "employment_status": "retired",
+            "investment_experience": "beginner"
+      },
+      "107": {
+            "id": "107",
+            "name": "Rajiv Menon",
+            "age": 70,
+            "annual_income": 50000,
+            "risk_profile": "very conservative",
+            "existing_products": [
+                  "Foreign Currency Time Deposit",
+                  "HSBC Life Insurance Plan",
+                  "HSBC Home Loan (fully paid)"
+            ],
+            "investment_goals": [
+                  "steady retirement income",
+                  "legacy planning",
+                  "capital preservation"
+            ],
+            "time_horizon": "5 years",
+            "current_savings": 600000,
+            "monthly_surplus": 1500,
+            "dependents": 2,
+            "employment_status": "retired",
+            "investment_experience": "low"
+      },
+      "108": {
+            "id": "108",
+            "name": "Margaret Lee",
+            "age": 68,
+            "annual_income": 95000,
+            "risk_profile": "moderate",
+            "existing_products": [
+                  "Everyday Global Account",
+                  "HSBC Life Insurance Plan",
+                  "Unit Trust Investments"
+            ],
+            "investment_goals": [
+                  "supplement retirement income",
+                  "wealth transfer to family",
+                  "charitable giving"
+            ],
+            "time_horizon": "5-10 years",
+            "current_savings": 800000,
+            "monthly_surplus": 3000,
+            "dependents": 1,
+            "employment_status": "semi-retired",
+            "investment_experience": "experienced"
       }
 }
