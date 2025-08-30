@@ -1,0 +1,47 @@
+.client-table-container,
+.products-table-container {
+  width: 100%;
+}
+
+.client-table-container h2,
+.products-table-container h2 {
+  color: var(--hsbc-red);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--border-radius);
+  border: 1px solid #e5e5e5;
+}
+
+.client-table,
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--hsbc-white);
+}
+
+.client-table th,
+.client-table td,
+.products-table th,
+.products-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.client-table th,
+.products-table th {
+  background: var(--background-grey);
+  font-weight: bold;
+  color: var(--text-dark);
+  position: sticky;
+  top: 0;
+}
+
+.client-table tr:hover,
+.products-table tr:hover {
+  background: #f9f9f9;
+}

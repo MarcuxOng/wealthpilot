@@ -1,5 +1,13 @@
 import { useState } from 'react'
-import './App.css'
+import './styles/base.css';
+import './styles/app.css';
+import './styles/navbar.css';
+import './styles/components.css';
+import './styles/table.css';
+import './styles/badge.css';
+import './styles/analysis.css';
+import './styles/history.css';
+import './styles/responsive.css';
 import AppHeader from './components/AppHeader.jsx'
 import NavBar from './components/NavBar.jsx'
 import ClientTable from './pages/ClientTable.jsx'

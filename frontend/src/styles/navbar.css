@@ -1,0 +1,61 @@
+/* NavBar Styles */
+.navbar {
+  background: var(--hsbc-white);
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.nav-item {
+  margin: 0;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  padding: 1rem 1.5rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-link:hover {
+  background: var(--background-grey);
+  color: var(--hsbc-red);
+}
+
+.nav-link.active {
+  color: var(--hsbc-red);
+  border-bottom-color: var(--hsbc-red);
+  font-weight: bold;
+}

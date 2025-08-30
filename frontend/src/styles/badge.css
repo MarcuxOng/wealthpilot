@@ -1,0 +1,68 @@
+.risk-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.risk-conservative,
+.risk-very-conservative,
+.risk-low {
+  background: #e9fbe5;
+  color: #2d5a2d;
+}
+
+.risk-moderate {
+  background: #fff4cc;
+  color: #8b6f00;
+}
+
+.risk-aggressive,
+.risk-high {
+  background: #ffe5e8;
+  color: #8b1a1a;
+}
+
+.badge-row { 
+  display: flex; 
+  gap: 0.5rem; 
+  flex-wrap: wrap; 
+}
+
+.badge {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: #f0f0f0;
+  color: #333;
+}
+
+.badge.risk { background: #fff4e5; }
+.badge.type { background: #e8f4ff; }
+.badge.priority.high { background: #ffe5e8; }
+.badge.priority.medium { background: #fff4cc; }
+.badge.priority.low { background: #e9fbe5; }
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.status-badge.success {
+  background: #e9fbe5;
+  color: #2d5a2d;
+}
+
+.status-badge.error {
+  background: #ffe5e8;
+  color: #8b1a1a;
+}
+
+.status-badge.unknown {
+  background: #f0f0f0;
+  color: #666;
+}

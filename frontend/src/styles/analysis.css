@@ -1,0 +1,82 @@
+/* Analysis Page Styles */
+.analysis-container {
+  width: 100%;
+}
+
+.analysis-container h2 {
+  color: var(--hsbc-red);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.input-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.analysis-results {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.client-section, .analysis-section {
+  background: var(--background-grey);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+}
+
+.client-section h2, .analysis-section h2 {
+  color: var(--hsbc-red);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.ai-analysis-preview {
+  margin-top: 1rem;
+}
+
+.ai-analysis-preview strong {
+  color: var(--text-dark);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.summary-text {
+  margin: 0.5rem 0 1rem;
+  line-height: 1.6;
+  color: #333;
+  font-style: italic;
+}
+
+.recommendations-preview {
+  margin-top: 1rem;
+}
+
+.recommendations-preview strong {
+  color: var(--text-dark);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.recommendations-preview ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recommendations-preview li {
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.recommendations-preview li:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 0.5rem;
+}
