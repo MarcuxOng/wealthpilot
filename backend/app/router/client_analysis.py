@@ -15,7 +15,7 @@ def get_client_analysis(client_id: str):
     if not client:
         return {"error": f"Client {client_id} not found"}
 
-    print(f"Analysing Client ID: {client_id}")
+    print(f"INFO:     Analysing Client ID: {client_id}")
     prompt = system_prompt(client, products)
     ai_analysis = gemini_client(prompt)
 
