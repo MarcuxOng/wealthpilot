@@ -14,7 +14,6 @@ const ClientAnalysis = () => {
     try {
       setLoading(true);
       setError('');
-      setAnalysis(null);
       
       if (!clientId.match(/^[a-zA-Z0-9-]+$/)) {
         throw new Error('Invalid Client ID format');
@@ -39,7 +38,6 @@ const ClientAnalysis = () => {
       
       // Ensure data structure integrity
       // Add debug logging to inspect API response
-      console.log('Raw API Response:', data);
       
       const normalizedData = {
         ...data,
@@ -69,11 +67,9 @@ const ClientAnalysis = () => {
             }))
         }
       };
-      console.log('Normalized Data:', normalizedData);
       setAnalysis(normalizedData);
     } catch (err) {
       setError(err.message);
-      setAnalysis(null);
     } finally {
       setLoading(false);
     }
