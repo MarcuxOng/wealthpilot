@@ -2,7 +2,7 @@ import os
 import json
 
 def client_data():
-    data_file_path = os.path.join(os.path.dirname(__file__), "client.json")
+    data_file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "client.json")
     try:
         with open(data_file_path, 'r', encoding='utf-8') as file:
             return json.load(file)
@@ -14,7 +14,7 @@ def client_data():
         return {"clients": {}}
     
 def product_data():
-    data_file_path = os.path.join(os.path.dirname(__file__), "products.json")
+    data_file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "products.json")
     try:
         with open(data_file_path, 'r', encoding='utf-8') as file:
             return json.load(file)

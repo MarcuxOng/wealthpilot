@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.data.data import client_data, product_data
+from app.load_data.data import client_data, product_data
 from app.llm.gemini import gemini_client
 from app.llm.sysPrompt import system_prompt
 
