@@ -24,14 +24,32 @@ const AnalysisHistory = () => {
       const data = await response.json();
       
       if (data.analyses) {
-        // Convert the analyses object to an array for easier rendering
-        const analysesArray = Object.entries(data.analyses).map(([clientId, analysis]) => ({
-          clientId,
-          ...analysis
-        }));
+        // Convert the analyses object to a flat array for easier rendering
+        const analysesArray = [];
+        Object.entries(data.analyses).forEach(([clientId, clientData]) => {
+          if (Array.isArray(clientData)) {
+            // Multiple analyses per client
+            clientData.forEach(analysis => {
+              analysesArray.push({
+                clientId,
+                ...analysis
+              });
+            });
+          } else {
+            // Single analysis per client (legacy format)
+            analysesArray.push({
+              clientId,
+              ...clientData
+            });
+          }
+        });
+        
+        // Sort by timestamp (newest first)
+        analysesArray.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        
         setAnalyses(analysesArray);
         setStats({
-          total_analyses: data.total_analyses,
+          total_analyses: analysesArray.length,
           client_ids: Object.keys(data.analyses)
         });
       } else {
@@ -55,13 +73,13 @@ const AnalysisHistory = () => {
     }
   };
 
-  const deleteAnalysis = async (clientId) => {
-    if (!window.confirm(`Are you sure you want to delete the analysis for client ${clientId}?`)) {
+  const deleteAnalysis = async (clientId, timestamp) => {
+    if (!window.confirm(`Are you sure you want to delete this specific analysis for client ${clientId}?`)) {
       return;
     }
 
     try {
-      const response = await fetch(`/client_analysis/${clientId}/history`, {
+      const response = await fetch(`/client_analysis/${clientId}/history/${encodeURIComponent(timestamp)}`, {
         method: 'DELETE'
       });
 
@@ -127,13 +145,13 @@ const AnalysisHistory = () => {
                   <span className="timestamp">
                     {formatTimestamp(analysis.timestamp)}
                   </span>
-                  <button
-                    className="delete-btn"
-                    onClick={() => deleteAnalysis(analysis.clientId)}
-                    title="Delete this analysis"
-                  >
-                    🗑️
-                  </button>
+                                     <button
+                     className="delete-btn"
+                     onClick={() => deleteAnalysis(analysis.clientId, analysis.timestamp)}
+                     title="Delete this analysis"
+                   >
+                     🗑️
+                   </button>
                 </div>
               </div>
               

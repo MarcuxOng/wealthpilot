@@ -41,17 +41,6 @@ def get_client_analysis(client_id: str):
     return analysis_data
 
 
-@router.get("/{client_id}/history")
-def get_client_analysis_history(client_id: str):
-    """Get stored analysis history for a specific client"""
-    stored_analysis = analysis_storage.get_analysis(client_id)
-    
-    if not stored_analysis:
-        return {"error": f"No analysis history found for client {client_id}"}
-    
-    return stored_analysis
-
-
 @router.get("/history/all")
 def get_all_analysis_history():
     """Get all stored analysis history"""
@@ -63,23 +52,12 @@ def get_all_analysis_history():
     }
 
 
-@router.delete("/{client_id}/history")
-def delete_client_analysis_history(client_id: str):
-    """Delete stored analysis history for a specific client"""
-    success = analysis_storage.delete_analysis(client_id)
+@router.delete("/{client_id}/history/{timestamp}")
+def delete_specific_analysis(client_id: str, timestamp: str):
+    """Delete a specific analysis for a client by timestamp"""
+    success = analysis_storage.delete_specific_analysis(client_id, timestamp)
     
     if success:
-        return {"message": f"Analysis history for client {client_id} deleted successfully"}
+        return {"message": f"Specific analysis for client {client_id} deleted successfully"}
     else:
-        return {"error": f"No analysis history found for client {client_id}"}
-
-
-@router.get("/history/stats")
-def get_analysis_stats():
-    """Get statistics about stored analyses"""
-    all_analyses = analysis_storage.get_all_analyses()
-    
-    return {
-        "total_analyses": len(all_analyses),
-        "client_ids": list(all_analyses.keys())
-    }
+        return {"error": f"No analysis found for client {client_id} with timestamp {timestamp}"}
