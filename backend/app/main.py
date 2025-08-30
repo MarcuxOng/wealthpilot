@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.router import client_analysis, products
+from app.router import clients, client_analysis, products
 
 
 app = FastAPI(
@@ -26,4 +26,5 @@ def read_root():
     return "HSBC Wealth Management AI API"
 
 app.include_router(client_analysis.router)
+app.include_router(clients.router)
 app.include_router(products.router)

@@ -32,11 +32,195 @@
   font-size: 2.5rem;
 }
 
+/* NavBar Styles */
+.navbar {
+  background: var(--hsbc-white);
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.nav-brand h2 {
+  color: var(--hsbc-red);
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  padding: 1rem 1.5rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-link:hover {
+  background: var(--background-grey);
+  color: var(--hsbc-red);
+}
+
+.nav-link.active {
+  color: var(--hsbc-red);
+  border-bottom-color: var(--hsbc-red);
+  font-weight: bold;
+}
+
+/* Main Content */
+.main-content {
+  background: var(--hsbc-white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+/* Table Styles */
+.client-table-container,
+.products-table-container {
+  width: 100%;
+}
+
+.client-table-container h2,
+.products-table-container h2 {
+  color: var(--hsbc-red);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--border-radius);
+  border: 1px solid #e5e5e5;
+}
+
+.client-table,
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--hsbc-white);
+}
+
+.client-table th,
+.client-table td,
+.products-table th,
+.products-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.client-table th,
+.products-table th {
+  background: var(--background-grey);
+  font-weight: bold;
+  color: var(--text-dark);
+  position: sticky;
+  top: 0;
+}
+
+.client-table tr:hover,
+.products-table tr:hover {
+  background: #f9f9f9;
+}
+
+/* Risk Badge Styles */
+.risk-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.risk-conservative,
+.risk-low {
+  background: #e9fbe5;
+  color: #2d5a2d;
+}
+
+.risk-moderate {
+  background: #fff4cc;
+  color: #8b6f00;
+}
+
+.risk-aggressive,
+.risk-high {
+  background: #ffe5e8;
+  color: #8b1a1a;
+}
+
+.risk-very-conservative {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+/* Goals List */
+.goals-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.goals-list li {
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.goals-list li:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Loading and Error States */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #dc3545;
+  background: #ffe6e6;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+  border: 1px solid #dc3545;
+}
+
 .analysis-container {
   background: var(--hsbc-white);
   border-radius: var(--border-radius);
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 2rem;
+}
+
+.analysis-container h2 {
+  color: var(--hsbc-red);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .input-section {
@@ -210,6 +394,22 @@
 }
 
 @media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 2rem;
+  }
+  
+  .nav-menu {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .nav-link {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
   .input-section {
     flex-direction: column;
   }
@@ -220,5 +420,13 @@
 
   .client-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .client-table th,
+  .client-table td,
+  .products-table th,
+  .products-table td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
   }
 }

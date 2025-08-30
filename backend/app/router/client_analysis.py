@@ -4,7 +4,7 @@ from app.load_data.data import client_data, product_data
 from app.llm.gemini import gemini_client
 from app.llm.sysPrompt import system_prompt
 
-router = APIRouter(prefix="/client", tags=["Client Analysis"])
+router = APIRouter(prefix="/client_analysis", tags=["Client Analysis"])
 
 
 @router.get("/{client_id}")
