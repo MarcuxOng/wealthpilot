@@ -7,6 +7,14 @@ const NavBar = ({ currentPage, onPageChange }) => {
         <ul className="nav-menu">
           <li className="nav-item">
             <button 
+              className={`nav-link ${currentPage === 'client-analysis' ? 'active' : ''}`}
+              onClick={() => onPageChange('client-analysis')}
+            >
+              Client Analysis
+            </button>
+          </li>
+          <li className="nav-item">
+            <button 
               className={`nav-link ${currentPage === 'client-table' ? 'active' : ''}`}
               onClick={() => onPageChange('client-table')}
             >
@@ -19,14 +27,6 @@ const NavBar = ({ currentPage, onPageChange }) => {
               onClick={() => onPageChange('products-table')}
             >
               Products Table
-            </button>
-          </li>
-          <li className="nav-item">
-            <button 
-              className={`nav-link ${currentPage === 'client-analysis' ? 'active' : ''}`}
-              onClick={() => onPageChange('client-analysis')}
-            >
-              Client Analysis
             </button>
           </li>
           <li className="nav-item">
