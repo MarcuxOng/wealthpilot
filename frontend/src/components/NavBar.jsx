@@ -4,9 +4,6 @@ const NavBar = ({ currentPage, onPageChange }) => {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <div className="nav-brand">
-          <h2>HSBC</h2>
-        </div>
         <ul className="nav-menu">
           <li className="nav-item">
             <button 
@@ -30,6 +27,14 @@ const NavBar = ({ currentPage, onPageChange }) => {
               onClick={() => onPageChange('client-analysis')}
             >
               Client Analysis
+            </button>
+          </li>
+          <li className="nav-item">
+            <button 
+              className={`nav-link ${currentPage === 'analysis-history' ? 'active' : ''}`}
+              onClick={() => onPageChange('analysis-history')}
+            >
+              Analysis History
             </button>
           </li>
         </ul>

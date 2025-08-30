@@ -5,6 +5,7 @@ import NavBar from './components/NavBar.jsx'
 import ClientTable from './pages/ClientTable.jsx'
 import ProductsTable from './pages/ProductsTable.jsx'
 import ClientAnalysis from './pages/ClientAnalysis.jsx'
+import AnalysisHistory from './pages/AnalysisHistory.jsx'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('client-analysis');
@@ -17,6 +18,8 @@ function App() {
         return <ProductsTable />;
       case 'client-analysis':
         return <ClientAnalysis />;
+      case 'analysis-history':
+        return <AnalysisHistory />;
       default:
         return <ClientAnalysis />;
     }
