@@ -37,7 +37,6 @@ def system_prompt(client_data: Dict, available_products: Dict) -> str:
             - Age: {client_data['age']}
             - Annual Income: ${client_data['annual_income']:,}
             - Risk Profile: {client_data['risk_profile']}
-            - Current Products: {', '.join(client_data['existing_products'])}
             - Investment Goals: {', '.join(client_data['investment_goals'])}
             - Time Horizon: {client_data['time_horizon']}
             - Current Savings: ${client_data['current_savings']:,}
