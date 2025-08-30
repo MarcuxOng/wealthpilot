@@ -14,7 +14,7 @@
 }
 
 .app-container {
-  max-width: 1200px;
+  max-width: auto;
   margin: 0 auto;
   padding: 2rem;
   min-height: 100vh;
@@ -156,6 +156,7 @@
 }
 
 .risk-conservative,
+.risk-very-conservative,
 .risk-low {
   background: #e9fbe5;
   color: #2d5a2d;
@@ -170,11 +171,6 @@
 .risk-high {
   background: #ffe5e8;
   color: #8b1a1a;
-}
-
-.risk-very-conservative {
-  background: #e3f2fd;
-  color: #1565c0;
 }
 
 /* Goals List */
