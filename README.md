@@ -2,12 +2,14 @@
 
 ## Overview
 
-An AI-driven solution for optimizing HSBC's wealth management operations through:
+An enterprise-grade solution combining AI analytics with HSBC's financial expertise to deliver:
 
-- Client demographic analysis
-- Asset and income processing
-- Automated product recommendations
-- Client summary generation
+- Real-time client financial profiling
+- Predictive wealth management recommendations
+- Automated product matching engine
+- Regulatory-compliant reporting
+- Historical analysis tracking
+- Multi-device responsive interface
 
 ## Prerequisites
 
@@ -20,7 +22,8 @@ An AI-driven solution for optimizing HSBC's wealth management operations through
 ### Environment Configuration
 
 ```bash
-cp backend/dotenv.template backend/.env
+cd backend
+cp dotenv.template .env
 ```
 
 ### Frontend Setup
@@ -52,36 +55,79 @@ python -m app.run
 
 ## Project Structure
 
-```
+```text
 backend/
 ├── app/
+│   ├── config.py           # Application configuration
+│   ├── llm/
+│   │   ├── gemini.py       # AI model integration
+│   │   └── sysPrompt.py    # Prompt engineering templates
 │   ├── router/
-│   │   ├── clients.py        # Client management endpoints
-│   │   ├── products.py       # Product catalog API
-│   │   └── client_analysis.py # AI analysis routes
+│   │   ├── clients.py      # Client management endpoints (CRUD)
+│   │   ├── products.py     # Product catalog API
+│   │   └── client_analysis.py # AI-driven analysis endpoints
+│   ├── storage/
+│   │   └── analysis_storage.py # Analysis result persistence
+│   ├── load_data/
+│   │   └── data.py         # Data loading utilities
+│   └── records/
+│       └── ai_analysis_db # Analysis history storage
 frontend/
 ├── src/
-│   ├── components/          # React components
-│   │   ├── ClientInput.jsx   # Client data form
-│   │   └── NavBar.jsx        # Navigation component
-│   ├── pages/               # Application views
-│   │   ├── ClientTable.jsx   # Client listing
-│   │   └── ProductsTable.jsx # Product catalog
+│   ├── components/
+│   │   ├── AppHeader.jsx    # Application header
+│   │   ├── ClientInput.jsx  # Client data entry form
+│   │   ├── ClientOverview.jsx # Client summary view
+│   │   ├── ErrorMessage.jsx # Error handling component
+│   │   ├── NavBar.jsx       # Navigation panel
+│   │   └── ProductRecommendations.jsx # AI suggestions
+│   ├── pages/
+│   │   ├── AnalysisHistory.jsx # Historical reports
+│   │   ├── ClientAnalysis.jsx # Real-time analysis
+│   │   ├── ClientTable.jsx  # Client directory
+│   │   └── ProductsTable.jsx # Product inventory
+│   ├── styles/
+│   │   ├── base.css        # Global styles
+│   │   ├── components.css  # Component-specific styles
+│   │   └── responsive.css  # Media queries
 ```
-
 ## API Reference
 
+### Client Management
 `GET /clients`
-- Returns list of all clients
+- Returns paginated list of clients with filtering options
+- Query Params:
+  - `page` (default: 1)
+  - `limit` (default: 20)
+  - `sort` (field to sort by)
 
+### Product Catalog
 `GET /products`
-- Returns list of all products
+- Returns HSBC's investment product catalog
+- Supports search by product features:
+  - `risk_level`
+  - `minimum_investment`
+  - `product_type` (e.g., 'ETF', 'Mutual Fund')
 
+### AI Analysis
 `GET /client_analysis/{client_id}`
-- Queries the data from JSON
-- Passes to the system prompt
-- Then passes to the AI for processing
-- Returns the AI analysis and recommendation
+- Generates personalized wealth management strategy
+- Path Parameters:
+  - `client_id`: UUID client identifier
+- Response Structure:
+  ```json
+  {
+    "risk_profile": "Conservative/Moderate/Aggressive",
+    "recommended_products": [{
+      "product_id": "HSBC-ETF-123",
+      "allocation_percentage": 35,
+      "rationale": "Matches client's long-term goals"
+    }],
+    "financial_health_score": 78,
+    "timestamp": "2025-08-31T05:37:10Z"
+  }
+  ```
+
 
 ## Development
 
@@ -99,18 +145,38 @@ npm run dev
 ```
 
 ## Contributing
+1. Create feature branch from `main`
+2. Follow conventional commits format:
+  - `feat: Add new client analysis endpoint`
+  - `fix: Resolve pagination issue in client table`
+3. Update documentation concurrently with code changes
+4. Include test coverage for new features
+5. Open PR with template:
+  - Description of changes
+  - Screenshots (for UI changes)
+  - Performance metrics (for critical paths)
 
-1. Create a new feature branch from `main`
-2. Make changes with descriptive commit messages
-3. Ensure tests pass and documentation is updated
-4. Open a pull request for team review
 
-## AI Model Integration
+## AI Integration Architecture
 
-The system uses a pre-trained AI model incorporating HSBC's product knowledge and policies. Key components include:
-
-- `backend/app/llm/gemini.py`: Core AI processing and recommendation logic
-- `backend/app/llm/sysPrompt.py`: System prompts and response templates
+```mermaid
+graph TD
+  A[Client Data] --> B{Data Loader}
+  B --> C[System Prompt Generator]
+  C --> D[AI Engine]
+  D --> E[Analysis Validator]
+  E --> F[Result Storage]
+  F --> G[Client Report]
+```
+Key Components:
+1. `gemini.py`: Handles AI model integration with:
+  - Rate limiting
+  - Response caching
+  - Fallback mechanisms
+2. `sysPrompt.py`: Maintains SEC-compliant templates for:
+  - Risk disclosure
+  - Product suitability checks
+  - Regulatory requirements
 
 ## Data Sources
 
