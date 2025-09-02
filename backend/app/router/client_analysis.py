@@ -43,7 +43,6 @@ def get_client_analysis(client_id: str):
 
 @router.get("/history/all")
 def get_all_analysis_history():
-    """Get all stored analysis history"""
     all_analyses = analysis_storage.get_all_analyses()
     
     return {
@@ -54,7 +53,6 @@ def get_all_analysis_history():
 
 @router.delete("/{client_id}/history/{timestamp}")
 def delete_specific_analysis(client_id: str, timestamp: str):
-    """Delete a specific analysis for a client by timestamp"""
     success = analysis_storage.delete_specific_analysis(client_id, timestamp)
     
     if success:

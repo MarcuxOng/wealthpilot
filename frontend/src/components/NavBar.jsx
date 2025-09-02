@@ -20,11 +20,11 @@ const NavBar = ({ currentPage, onPageChange }) => {
               Products Table
             </button>
           </li>
-          {/* <li className="nav-item">
+          <li className="nav-item">
             <button className={`nav-link ${currentPage === 'analysis-history' ? 'active' : ''}`} onClick={() => onPageChange('analysis-history')}>
               Analysis History
             </button>
-          </li> */}
+          </li>
         </ul>
       </div>
     </nav>
