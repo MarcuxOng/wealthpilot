@@ -27,7 +27,6 @@ const ClientAnalysis = () => {
 
       const data = await response.json();
       
-      // Validate response structure
       if (!data || typeof data !== 'object') {
         throw new Error('Invalid API response format');
       }

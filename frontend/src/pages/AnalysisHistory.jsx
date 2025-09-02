@@ -24,11 +24,9 @@ const AnalysisHistory = () => {
       const data = await response.json();
       
       if (data.analyses) {
-        // Convert the analyses object to a flat array for easier rendering
         const analysesArray = [];
         Object.entries(data.analyses).forEach(([clientId, clientData]) => {
           if (Array.isArray(clientData)) {
-            // Multiple analyses per client
             clientData.forEach(analysis => {
               analysesArray.push({
                 clientId,
@@ -36,7 +34,6 @@ const AnalysisHistory = () => {
               });
             });
           } else {
-            // Single analysis per client (legacy format)
             analysesArray.push({
               clientId,
               ...clientData
@@ -44,7 +41,6 @@ const AnalysisHistory = () => {
           }
         });
         
-        // Sort by timestamp (newest first)
         analysesArray.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
         
         setAnalyses(analysesArray);
@@ -87,7 +83,6 @@ const AnalysisHistory = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      // Refresh the list after deletion
       fetchAnalysisHistory();
     } catch (err) {
       setError(`Failed to delete analysis: ${err.message}`);
@@ -145,12 +140,8 @@ const AnalysisHistory = () => {
                   <span className="timestamp">
                     {formatTimestamp(analysis.timestamp)}
                   </span>
-                                     <button
-                     className="delete-btn"
-                     onClick={() => deleteAnalysis(analysis.clientId, analysis.timestamp)}
-                     title="Delete this analysis"
-                   >
-                     🗑️
+                  <button className="delete-btn" onClick={() => deleteAnalysis(analysis.clientId, analysis.timestamp)} title="Delete this analysis">
+                    🗑️
                    </button>
                 </div>
               </div>
@@ -170,9 +161,7 @@ const AnalysisHistory = () => {
                   <div className="ai-analysis-preview">
                     <strong>AI Analysis Summary:</strong>
                     <p className="summary-text">
-                      {analysis.analysis_data.ai_analysis.summary || 
-                       analysis.analysis_data.ai_analysis.client_summary?.profile_overview ||
-                       'No summary available'}
+                      {analysis.analysis_data.ai_analysis.summary || analysis.analysis_data.ai_analysis.client_summary?.profile_overview || 'No summary available'}
                     </p>
                     
                     {analysis.analysis_data.ai_analysis.recommendations && (
