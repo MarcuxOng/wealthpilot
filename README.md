@@ -144,19 +144,6 @@ cd frontend
 npm run dev
 ```
 
-## Contributing
-1. Create feature branch from `main`
-2. Follow conventional commits format:
-  - `feat: Add new client analysis endpoint`
-  - `fix: Resolve pagination issue in client table`
-3. Update documentation concurrently with code changes
-4. Include test coverage for new features
-5. Open PR with template:
-  - Description of changes
-  - Screenshots (for UI changes)
-  - Performance metrics (for critical paths)
-
-
 ## AI Integration Architecture
 
 ```mermaid
