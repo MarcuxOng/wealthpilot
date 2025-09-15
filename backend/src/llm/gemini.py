@@ -5,7 +5,7 @@ from typing import Dict, Any
 from google import generativeai as genai
 from google.api_core import exceptions as google_exceptions
 
-from app.config import settings
+from src.config import settings
 
 _model = None
 

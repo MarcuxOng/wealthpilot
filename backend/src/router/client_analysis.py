@@ -1,9 +1,9 @@
 from fastapi import APIRouter
 
-from app.load_data.data import client_data, product_data
-from app.llm.gemini import gemini_client
-from app.llm.sysPrompt import system_prompt
-from app.storage.analysis_storage import analysis_storage
+from src.load_data.data import client_data, product_data
+from src.llm.gemini import gemini_client
+from src.llm.sysPrompt import system_prompt
+from src.storage.analysis_storage import analysis_storage
 
 router = APIRouter(prefix="/client_analysis", tags=["Client Analysis"])
 

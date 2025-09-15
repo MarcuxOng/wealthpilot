@@ -1,11 +1,11 @@
 import uvicorn
 from dotenv import load_dotenv
-from app.config import settings
+from src.config import settings
 
 load_dotenv()
 
 if __name__ == '__main__':
-    from app.main import app
+    from src.main import app
 
     uvicorn.run(
         "app.main:app",

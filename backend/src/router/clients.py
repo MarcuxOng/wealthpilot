@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.load_data.data import client_data
+from src.load_data.data import client_data
 
 router = APIRouter(prefix="/clients", tags=["Clients"])
 

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.load_data.data import product_data
+from src.load_data.data import product_data
 
 router = APIRouter(prefix="/products", tags=["Products"])
 
