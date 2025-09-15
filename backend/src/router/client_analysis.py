@@ -49,11 +49,20 @@ def get_client_analysis(client_id: str, db: Session = Depends(get_db)):
 
 @router.get("/history/all")
 def get_all_analysis_history(db: Session = Depends(get_db)):
-    all_analyses = db.query(AnalyseHistory).all()
+    results = db.query(AnalyseHistory, Client).join(Client, AnalyseHistory.client_id == Client.id).all()
+
+    analyses_with_client_data = []
+    for analysis, client in results:
+        analyses_with_client_data.append({
+            "id": analysis.id,
+            "client_id": analysis.client_id,
+            "client_name": client.name,
+            "analysis_result": analysis.analysis_result,
+        })
 
     return {
-        "total_analyses": len(all_analyses),
-        "analyses": all_analyses
+        "total_analyses": len(analyses_with_client_data),
+        "analyses": analyses_with_client_data
     }
 
 

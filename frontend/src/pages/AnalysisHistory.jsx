@@ -24,29 +24,11 @@ const AnalysisHistory = () => {
       const data = await response.json();
       
       if (data.analyses) {
-        const analysesArray = [];
-        Object.entries(data.analyses).forEach(([clientId, clientData]) => {
-          if (Array.isArray(clientData)) {
-            clientData.forEach(analysis => {
-              analysesArray.push({
-                clientId,
-                ...analysis
-              });
-            });
-          } else {
-            analysesArray.push({
-              clientId,
-              ...clientData
-            });
-          }
-        });
-        
-        analysesArray.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-        
-        setAnalyses(analysesArray);
+        setAnalyses(data.analyses);
+        const client_ids = [...new Set(data.analyses.map(a => a.client_id))];
         setStats({
-          total_analyses: analysesArray.length,
-          client_ids: Object.keys(data.analyses)
+          total_analyses: data.analyses.length,
+          client_ids: client_ids
         });
       } else {
         setAnalyses([]);
@@ -60,33 +42,9 @@ const AnalysisHistory = () => {
     }
   };
 
-  const formatTimestamp = (timestamp) => {
-    try {
-      const date = new Date(timestamp);
-      return date.toLocaleString();
-    } catch (e) {
-      return timestamp;
-    }
-  };
-
-  const deleteAnalysis = async (clientId, timestamp) => {
-    if (!window.confirm(`Are you sure you want to delete this specific analysis for client ${clientId}?`)) {
-      return;
-    }
-
-    try {
-      const response = await fetch(`/client_analysis/${clientId}/history/${encodeURIComponent(timestamp)}`, {
-        method: 'DELETE'
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      fetchAnalysisHistory();
-    } catch (err) {
-      setError(`Failed to delete analysis: ${err.message}`);
-    }
+  const deleteAnalysis = async (analysisId) => {
+    // Temporarily disabled
+    alert("Delete functionality is temporarily disabled.");
   };
 
   if (loading) {
@@ -132,15 +90,12 @@ const AnalysisHistory = () => {
       ) : (
         <div className="analyses-list">
           <h3>All Analyses</h3>
-          {analyses.map((analysis, index) => (
-            <div key={analysis.clientId} className="analysis-card">
+          {analyses.map((analysis) => (
+            <div key={analysis.id} className="analysis-card">
               <div className="analysis-header">
-                <h4>Client: {analysis.clientId}</h4>
+                <h4>Client: {analysis.client_id}</h4>
                 <div className="analysis-actions">
-                  <span className="timestamp">
-                    {formatTimestamp(analysis.timestamp)}
-                  </span>
-                  <button className="delete-btn" onClick={() => deleteAnalysis(analysis.clientId, analysis.timestamp)} title="Delete this analysis">
+                  <button className="delete-btn" onClick={() => deleteAnalysis(analysis.id)} title="Delete this analysis" disabled>
                     🗑️
                    </button>
                 </div>
@@ -148,34 +103,34 @@ const AnalysisHistory = () => {
               
               <div className="analysis-content">
                 <div className="client-info">
-                  <strong>Client Name:</strong> {analysis.analysis_data?.client?.name || 'N/A'}
+                  <strong>Client Name:</strong> {analysis.client_name || 'N/A'}
                 </div>
                 <div className="analysis-status">
                   <strong>Status:</strong> 
-                  <span className={`status-badge ${analysis.analysis_data?.status || 'unknown'}`}>
-                    {analysis.analysis_data?.status || 'Unknown'}
+                  <span className={`status-badge success`}>
+                    Success
                   </span>
                 </div>
                 
-                {analysis.analysis_data?.ai_analysis && (
+                {analysis.analysis_result && (
                   <div className="ai-analysis-preview">
                     <strong>AI Analysis Summary:</strong>
                     <p className="summary-text">
-                      {analysis.analysis_data.ai_analysis.summary || analysis.analysis_data.ai_analysis.client_summary?.profile_overview || 'No summary available'}
+                      {analysis.analysis_result.summary || analysis.analysis_result.client_summary?.profile_overview || 'No summary available'}
                     </p>
                     
-                    {analysis.analysis_data.ai_analysis.recommendations && (
+                    {analysis.analysis_result.recommendations && (
                       <div className="recommendations-preview">
                         <strong>Recommendations:</strong>
                         <ul>
-                          {analysis.analysis_data.ai_analysis.recommendations.slice(0, 2).map((rec, idx) => (
+                          {analysis.analysis_result.recommendations.slice(0, 2).map((rec, idx) => (
                             <li key={idx}>
                               {rec.name || rec.product_name || 'Unnamed Product'}
                               {rec.confidence && ` (${(rec.confidence * 100).toFixed(1)}% confidence)`}
                             </li>
                           ))}
-                          {analysis.analysis_data.ai_analysis.recommendations.length > 2 && (
-                            <li>... and {analysis.analysis_data.ai_analysis.recommendations.length - 2} more</li>
+                          {analysis.analysis_result.recommendations.length > 2 && (
+                            <li>... and {analysis.analysis_result.recommendations.length - 2} more</li>
                           )}
                         </ul>
                       </div>

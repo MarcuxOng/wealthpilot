@@ -2,7 +2,7 @@ import React from 'react';
 
 const AppHeader = () => (
   <header className="app-header">
-    <h1>HSBC Client Analysis</h1>
+    <h1>WealthPilot</h1>
   </header>
 );
 
