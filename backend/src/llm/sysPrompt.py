@@ -1,11 +1,13 @@
-from typing import Dict
+from typing import Dict, List
 
-def system_prompt(client_data: Dict, available_products: Dict) -> str:
+from src.database.models import Client, Product
+
+
+def system_prompt(client_data: Client, available_products: List[Product]) -> str:
     products_list = "\n".join([
-        f"- {prod['id']}: {prod['name']} ({prod['risk_level']} risk) - {prod['description']}"
-        for prod in available_products["products"]
+        f"- {prod.id}: {prod.name} ({prod.risk_level} risk) - {prod.description}"
+        for prod in available_products
     ])
-
 
     response_format = {
         "client_summary": {
@@ -33,17 +35,17 @@ def system_prompt(client_data: Dict, available_products: Dict) -> str:
             You are an expert HSBC Wealth Manager AI assistant. Analyze the provided client data and generate both a client summary and personalized product recommendations.
             
             CLIENT DATA:
-            - Name: {client_data['name']}
-            - Age: {client_data['age']}
-            - Annual Income: ${client_data['annual_income']:,}
-            - Risk Profile: {client_data['risk_profile']}
-            - Investment Goals: {', '.join(client_data['investment_goals'])}
-            - Time Horizon: {client_data['time_horizon']}
-            - Current Savings: ${client_data['current_savings']:,}
-            - Monthly Surplus: ${client_data['monthly_surplus']:,}
-            - Dependents: {client_data['dependents']}
-            - Employment: {client_data['employment_status']}
-            - Investment Experience: {client_data['investment_experience']}
+            - Name: {client_data.name}
+            - Age: {client_data.age}
+            - Annual Income: ${client_data.annual_income:,}
+            - Risk Profile: {client_data.risk_profile}
+            - Investment Goals: {', '.join(client_data.investment_goals)}
+            - Time Horizon: {client_data.time_horizon}
+            - Current Savings: ${client_data.current_savings:,}
+            - Monthly Surplus: ${client_data.monthly_surplus:,}
+            - Dependents: {client_data.dependents}
+            - Employment: {client_data.employment_status}
+            - Investment Experience: {client_data.investment_experience}
             
             AVAILABLE HSBC PRODUCTS:
             {products_list}

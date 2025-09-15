@@ -1,19 +1,24 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
 
-from src.load_data.data import client_data, product_data
+from src.database.database import get_db
+from src.database.models import AnalyseHistory, Client, Product
 from src.llm.gemini import gemini_client
 from src.llm.sysPrompt import system_prompt
-from src.storage.analysis_storage import analysis_storage
 
 router = APIRouter(prefix="/client_analysis", tags=["Client Analysis"])
 
 
 @router.get("/{client_id}")
-def get_client_analysis(client_id: str):
-    client = client_data.get(client_id)
-    products = product_data
+def get_client_analysis(client_id: str, db: Session = Depends(get_db)):
+    client = db.query(Client).filter(Client.id == client_id).first()
     if not client:
-        return {"error": f"Client {client_id} not found"}
+        raise HTTPException(status_code=404, detail=f"Client {client_id} not found")
+
+    products = db.query(Product).all()
+    if not products:
+        # You might want to seed your products table first
+        raise HTTPException(status_code=404, detail="No products found in the database")
 
     print(f"INFO:     Analysing Client ID: {client_id}")
     prompt = system_prompt(client, products)
@@ -21,41 +26,38 @@ def get_client_analysis(client_id: str):
 
     if "error" in ai_analysis:
         return {
-            "client": client,
+            "client": client.__dict__,
             "ai_analysis": ai_analysis,
             "status": "error"
         }
 
-    # Store the successful AI analysis
-    analysis_data = {
-        "client": client,
+    # Store the analysis data
+    new_analysis_record = AnalyseHistory(
+        client_id=client.id,
+        analysis_result=ai_analysis
+    )
+    db.add(new_analysis_record)
+    db.commit()
+    db.refresh(new_analysis_record)
+
+    return {
+        "client": client.__dict__,
         "ai_analysis": ai_analysis,
         "status": "success"
     }
-    
-    # Store the analysis data
-    storage_success = analysis_storage.store_analysis(client_id, analysis_data)
-    if not storage_success:
-        print(f"Warning: Failed to store analysis for client {client_id}")
-
-    return analysis_data
 
 
 @router.get("/history/all")
-def get_all_analysis_history():
-    all_analyses = analysis_storage.get_all_analyses()
-    
+def get_all_analysis_history(db: Session = Depends(get_db)):
+    all_analyses = db.query(AnalyseHistory).all()
+
     return {
         "total_analyses": len(all_analyses),
         "analyses": all_analyses
     }
 
 
-@router.delete("/{client_id}/history/{timestamp}")
-def delete_specific_analysis(client_id: str, timestamp: str):
-    success = analysis_storage.delete_specific_analysis(client_id, timestamp)
-    
-    if success:
-        return {"message": f"Specific analysis for client {client_id} deleted successfully"}
-    else:
-        return {"error": f"No analysis found for client {client_id} with timestamp {timestamp}"}
+@router.get("/history/{client_id}")
+def get_client_analysis_history(client_id: str, db: Session = Depends(get_db)):
+    history = db.query(AnalyseHistory).filter(AnalyseHistory.client_id == client_id).all()
+    return history
