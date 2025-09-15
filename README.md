@@ -1,8 +1,8 @@
-# HSBC AI-Powered Wealth Management System
+# WealthPilot: AI-Powered Wealth Management System
 
 ## Overview
 
-An enterprise-grade solution combining AI analytics with HSBC's financial expertise to deliver:
+An enterprise-grade solution combining AI analytics with financial expertise to deliver:
 
 - Real-time client financial profiling
 - Predictive wealth management recommendations
@@ -11,11 +11,11 @@ An enterprise-grade solution combining AI analytics with HSBC's financial expert
 - Historical analysis tracking
 - Multi-device responsive interface
 
-## Prerequisites
+## Tech Stack
 
-- Node.js v18+ & npm v9+
-- Python 3.10+
-- Virtual environment (venv)
+- React
+- Python FastAPI
+- MySQL
 
 ## Installation & Setup
 
@@ -50,47 +50,9 @@ pip install -r requirements.txt
 
 3. Start development server:
 ```bash
-python -m app.run
+python -m src
 ```
 
-## Project Structure
-
-```text
-backend/
-├── app/
-│   ├── config.py           # Application configuration
-│   ├── llm/
-│   │   ├── gemini.py       # AI model integration
-│   │   └── sysPrompt.py    # Prompt engineering templates
-│   ├── router/
-│   │   ├── clients.py      # Client management endpoints (CRUD)
-│   │   ├── products.py     # Product catalog API
-│   │   └── client_analysis.py # AI-driven analysis endpoints
-│   ├── storage/
-│   │   └── analysis_storage.py # Analysis result persistence
-│   ├── load_data/
-│   │   └── data.py         # Data loading utilities
-│   └── records/
-│       └── ai_analysis_db # Analysis history storage
-frontend/
-├── src/
-│   ├── components/
-│   │   ├── AppHeader.jsx    # Application header
-│   │   ├── ClientInput.jsx  # Client data entry form
-│   │   ├── ClientOverview.jsx # Client summary view
-│   │   ├── ErrorMessage.jsx # Error handling component
-│   │   ├── NavBar.jsx       # Navigation panel
-│   │   └── ProductRecommendations.jsx # AI suggestions
-│   ├── pages/
-│   │   ├── AnalysisHistory.jsx # Historical reports
-│   │   ├── ClientAnalysis.jsx # Real-time analysis
-│   │   ├── ClientTable.jsx  # Client directory
-│   │   └── ProductsTable.jsx # Product inventory
-│   ├── styles/
-│   │   ├── base.css        # Global styles
-│   │   ├── components.css  # Component-specific styles
-│   │   └── responsive.css  # Media queries
-```
 ## API Reference
 
 ### Client Management
@@ -135,7 +97,7 @@ frontend/
 ```bash
 cd backend
 venv\Scripts\activate
-python -m app.run
+python -m src
 ```
 
 2. In separate terminal, start frontend:
@@ -164,9 +126,3 @@ Key Components:
   - Risk disclosure
   - Product suitability checks
   - Regulatory requirements
-
-## Data Sources
-
-Sample data files located in `backend/app/data/`:
-- `client.json`: Demo client records with financial profiles
-- `products.json`: HSBC product catalog with specifications
