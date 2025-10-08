@@ -15,7 +15,7 @@ const AnalysisHistory = () => {
       setLoading(true);
       setError('');
       
-      const response = await fetch('/client_analysis/history/all');
+      const response = await fetch('/analysis_history/history/all');
       
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.router import clients, client_analysis, products
+from src.config import settings
+from src.router import clients, client_analysis, products, analysis_history
 
 
 app = FastAPI(
@@ -10,9 +11,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-origins = [
-    "http://localhost:3000",
-]
+origins = [settings.origin]
 
 app.add_middleware(
     CORSMiddleware,
@@ -21,10 +20,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/", tags=["Root"])
-def read_root():
-    return "HSBC Wealth Management AI API"
-
 app.include_router(client_analysis.router)
 app.include_router(clients.router)
 app.include_router(products.router)
+app.include_router(analysis_history.router)
+
+@app.get("/", tags=["Root"])
+def read_root():
+    return "HSBC Wealth Management AI API"

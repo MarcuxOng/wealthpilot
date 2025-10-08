@@ -19,5 +19,6 @@ class Settings(BaseSettings):
     db_port: int
     db_database: str
 
+    origin: str
 
 settings = Settings()
